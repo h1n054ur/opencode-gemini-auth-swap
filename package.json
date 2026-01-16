@@ -3,8 +3,8 @@
   "module": "index.ts",
   "version": "1.4.0",
   "description": "OpenCode Gemini OAuth plugin with multi-account profile switching",
-  "author": "umerhani",
-  "repository": "https://github.com/umerhani/opencode-gemini-auth-swap",
+  "author": "h1n054ur",
+  "repository": "https://github.com/h1n054ur/opencode-gemini-auth-swap",
   "files": [
     "index.ts",
     "src"
