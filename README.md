@@ -198,7 +198,7 @@ you must clear the cached plugin:
 
 ```bash
 # Clear the specific plugin cache
-rm -rf ~/.cache/opencode/node_modules/opencode-gemini-auth
+rm -rf ~/.cache/opencode/node_modules/opencode-gemini-auth-swap
 
 # Run Opencode to trigger a fresh install
 opencode
@@ -211,21 +211,31 @@ To develop on this plugin locally:
 1. **Clone**:
 
    ```bash
-   git clone https://github.com/jenslys/opencode-gemini-auth.git
-   cd opencode-gemini-auth
+   git clone https://github.com/h1n054ur/opencode-gemini-auth-swap.git
+   cd opencode-gemini-auth-swap
    bun install
    ```
 
-2. **Link**:
+2. **Run tests**:
+
+   ```bash
+   bun test
+   ```
+
+3. **Link**:
    Update your Opencode config to point to your local directory using a
    `file://` URL:
 
    ```json
    {
-     "plugin": ["file:///absolute/path/to/opencode-gemini-auth"]
+     "plugin": ["file:///absolute/path/to/opencode-gemini-auth-swap"]
    }
    ```
 
+## Credits
+
+This is a fork of [opencode-gemini-auth](https://github.com/jenslys/opencode-gemini-auth) by [jenslys](https://github.com/jenslys).
+
 ## License
 
-MIT
+MIT - see [LICENSE](LICENSE)
