@@ -1,11 +1,10 @@
-# Gemini OAuth Plugin for Opencode
+# Gemini OAuth Plugin for Opencode (with Account Swap)
 
-![License](https://img.shields.io/npm/l/opencode-gemini-auth)
-![Version](https://img.shields.io/npm/v/opencode-gemini-auth)
+![License](https://img.shields.io/npm/l/opencode-gemini-auth-swap)
 
-**Authenticate the Opencode CLI with your Google account.** This plugin enables
-you to use your existing Gemini plan and quotas (including the free tier)
-directly within Opencode, bypassing separate API billing.
+**Authenticate the Opencode CLI with your Google account + easily swap between multiple accounts.**
+
+This is a fork of [opencode-gemini-auth](https://github.com/jenslys/opencode-gemini-auth) that adds multi-account profile management. Use your existing Gemini plan and quotas (including the free tier) directly within Opencode, and easily switch between different Google accounts/projects.
 
 ## Prerequisites
 
@@ -20,8 +19,14 @@ Add the plugin to your Opencode configuration file
 ```json
 {
   "$schema": "https://opencode.ai/config.json",
-  "plugin": ["opencode-gemini-auth@latest"]
+  "plugin": ["opencode-gemini-auth-swap@latest"]
 }
+```
+
+Also install the CLI globally for account switching:
+
+```bash
+bun install -g opencode-gemini-auth-swap
 ```
 
 ## Usage
@@ -40,6 +45,59 @@ Add the plugin to your Opencode configuration file
      you can manually paste the callback URL or just the authorization code.
 
 Once authenticated, Opencode will use your Google account for Gemini requests.
+
+## Account Switching
+
+The main feature of this fork! Easily switch between multiple Google accounts.
+
+### Save Current Account as Profile
+
+After logging in with `opencode auth login`, save it as a named profile:
+
+```bash
+gemini-swap save work my-gcp-project-id
+gemini-swap save personal another-project-id
+```
+
+### Switch Between Accounts
+
+```bash
+gemini-swap use work      # Switch to work account
+gemini-swap use personal  # Switch to personal account
+```
+
+### Other Commands
+
+```bash
+gemini-swap list      # List all saved profiles
+gemini-swap current   # Show current configuration
+gemini-swap delete <name>  # Delete a profile
+gemini-swap help      # Show help
+```
+
+### Workflow Example
+
+```bash
+# Login with first Google account
+opencode auth login
+# Select Google > OAuth with Google (Gemini CLI)
+
+# Save as profile
+gemini-swap save account1 project-id-for-account1
+
+# Login with second Google account
+opencode auth login
+
+# Save as another profile
+gemini-swap save account2 project-id-for-account2
+
+# Now you can switch anytime:
+gemini-swap use account1
+opencode  # Uses account1
+
+gemini-swap use account2
+opencode  # Uses account2
+```
 
 ## Configuration
 

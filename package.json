@@ -1,15 +1,19 @@
 {
-  "name": "opencode-gemini-auth",
+  "name": "opencode-gemini-auth-swap",
   "module": "index.ts",
-  "version": "1.3.7",
-  "author": "jenslys",
-  "repository": "https://github.com/jenslys/opencode-gemini-auth",
+  "version": "1.4.0",
+  "description": "OpenCode Gemini OAuth plugin with multi-account profile switching",
+  "author": "umerhani",
+  "repository": "https://github.com/umerhani/opencode-gemini-auth-swap",
   "files": [
     "index.ts",
     "src"
   ],
   "license": "MIT",
   "type": "module",
+  "bin": {
+    "gemini-swap": "./src/cli.ts"
+  },
   "devDependencies": {
     "@opencode-ai/plugin": "^1.0.203",
     "@types/bun": "latest"
