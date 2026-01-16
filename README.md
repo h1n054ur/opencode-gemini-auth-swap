@@ -24,6 +24,12 @@ Add the plugin to your Opencode configuration file
 }
 ```
 
+To use the account switching feature, also install globally:
+
+```bash
+bun install -g opencode-gemini-auth
+```
+
 ## Usage
 
 1. **Login**: Run the authentication command in your terminal:
@@ -40,6 +46,59 @@ Add the plugin to your Opencode configuration file
      you can manually paste the callback URL or just the authorization code.
 
 Once authenticated, Opencode will use your Google account for Gemini requests.
+
+## Account Switching
+
+The main feature of this fork! Easily switch between multiple Google accounts.
+
+### Save Current Account as Profile
+
+After logging in with `opencode auth login`, save it as a named profile:
+
+```bash
+gemini-swap save work my-gcp-project-id
+gemini-swap save personal another-project-id
+```
+
+### Switch Between Accounts
+
+```bash
+gemini-swap use work      # Switch to work account
+gemini-swap use personal  # Switch to personal account
+```
+
+### Other Commands
+
+```bash
+gemini-swap list      # List all saved profiles
+gemini-swap current   # Show current configuration
+gemini-swap delete <name>  # Delete a profile
+gemini-swap help      # Show help
+```
+
+### Workflow Example
+
+```bash
+# Login with first Google account
+opencode auth login
+# Select Google > OAuth with Google (Gemini CLI)
+
+# Save as profile
+gemini-swap save account1 project-id-for-account1
+
+# Login with second Google account
+opencode auth login
+
+# Save as another profile
+gemini-swap save account2 project-id-for-account2
+
+# Now you can switch anytime:
+gemini-swap use account1
+opencode  # Uses account1
+
+gemini-swap use account2
+opencode  # Uses account2
+```
 
 ## Configuration
 
